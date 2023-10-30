@@ -1,3 +1,8 @@
 'use strict';
 
-console.log("Hello");
+document.write("A");
+
+const canvas = document.getElementById("canvas");
+canvas.style.width = "100px";
+
+
