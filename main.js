@@ -34,7 +34,7 @@ function addTodo({display, title, text}) {
 for (let i = 0; i < 30; i++) {
   addTodo({
     display: false,
-    title: "X",
-    text: "A\nB\n\t\tC\n\t\tD"
+    title: "[Title]",
+    text: " ~~~ Text ~~~\n\n\n\t\t "
   });
 }
