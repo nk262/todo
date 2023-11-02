@@ -9,3 +9,27 @@ body {
   width: 100vw;
   height: 100vh;
 }
+
+#todolist {
+  background: #000000;
+  width: 90vw;
+  margin: auto;
+  margin-top: 5px;
+  padding: 2px;
+}
+
+.todo {
+  background: #404040;
+  margin: 5px;
+  padding: 3px;
+}
+
+.todotitle {
+  font-size: large;
+  margin: 0;
+}
+
+.todotext {
+  font-size: medium;
+  margin: 0;
+}
