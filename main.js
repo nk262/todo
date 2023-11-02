@@ -32,17 +32,25 @@ function addTodo({display, title, text}) {
 }
 
 addTodo({
-  display: true,
+  display: false,
   title: "a",
   text: "A\n\tB\n\t\tC\n\tD"
 });
 addTodo({
-  display: true,
+  display: false,
   title: "b",
   text: "A\n\tB\n\t\tC\n\t\t\tD"
 });
 addTodo({
-  display: true,
+  display: false,
   title: "c",
   text: "A\n\tB\n\t\tC\n\t\tD"
 });
+
+for (let i = 0; i < 20; i++) {
+  addTodo({
+    display: false,
+    title: "X",
+    text: "A\nB\n\t\tC\n\t\tD"
+  });
+}
