@@ -1,6 +1,6 @@
 'use strict';
 
-function todoElement({title, text}) {
+function todoElement({title, text, display}) {
   
   const todo = document.createElement("div");
   todo.classList.add("todo");
@@ -12,11 +12,24 @@ function todoElement({title, text}) {
   todoText.classList.add("todotext");
   
   todoTitle.innerText = title;
-  todoText.innerText = text
+  todoText.innerText = text;
   
   todo.appendChild(todoTitle);
   todo.appendChild(todoText);
   
+
+  const defaultTodoTextDisplay = todoText.style.display;
+  if (!display) {
+    todoText.style.display = "none";
+  }
+  todo.addEventListener("click", function() {
+    if (todoText.style.display === defaultTodoTextDisplay) {
+      todoText.style.display = "none";
+    } else {
+      todoText.style.display = defaultTodoTextDisplay;
+    }
+  });
+
   return todo;
 }
 
@@ -24,13 +37,16 @@ const todolist = document.getElementById("todolist");
 
 todolist.appendChild(todoElement({
   title: "title1",
-  text: "Hello\nHello"
+  text: "Hello\nHello",
+  display: true
 }));
 todolist.appendChild(todoElement({
   title: "title2",
-  text: "Hello"
+  text: "Hello",
+  display: true
 }));
 todolist.appendChild(todoElement({
   title: "title3",
-  text: "Hello"
+  text: "Hello",
+  display: false
 }));
