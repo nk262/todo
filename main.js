@@ -31,23 +31,7 @@ function addTodo({display, title, text}) {
   todoList.appendChild(todo);
 }
 
-addTodo({
-  display: false,
-  title: "a",
-  text: "A\n\tB\n\t\tC\n\tD"
-});
-addTodo({
-  display: false,
-  title: "b",
-  text: "A\n\tB\n\t\tC\n\t\t\tD"
-});
-addTodo({
-  display: false,
-  title: "c",
-  text: "A\n\tB\n\t\tC\n\t\tD"
-});
-
-for (let i = 0; i < 20; i++) {
+for (let i = 0; i < 30; i++) {
   addTodo({
     display: false,
     title: "X",
