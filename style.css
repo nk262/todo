@@ -32,4 +32,6 @@ body {
 .todotext {
   font-size: medium;
   margin: 0;
+  padding: 4px;
+  border: solid 1px #959595;
 }
