@@ -1,52 +1,48 @@
 'use strict';
 
-function todoElement({title, text, display}) {
-  
+function addTodo({display, title, text}) {
+  const todoList = document.getElementById("todolist");
+
   const todo = document.createElement("div");
   todo.classList.add("todo");
-  
-  const todoTitle = document.createElement("p");
-  const todoText = document.createElement("pre");
-  
-  todoTitle.classList.add("todotitle");
-  todoText.classList.add("todotext");
-  
-  todoTitle.innerText = title;
-  todoText.innerText = text;
-  
-  todo.appendChild(todoTitle);
-  todo.appendChild(todoText);
-  
 
-  const defaultTodoTextDisplay = todoText.style.display;
-  if (!display) {
-    todoText.style.display = "none";
-  }
+  const todoTitle = document.createElement("p");
+  todoTitle.classList.add("todotitle");
+  todoTitle.innerText = title;
+  todo.appendChild(todoTitle);
+
+  const todoText = document.createElement("pre");
+  todoText.classList.add("todotext");
+  todoText.innerText = text;
+  todo.appendChild(todoText);
+
+
+  const defaultTextDisplay = todoText.style.display;
+  if (!display) { todoText.style.display = "none" }
+
   todo.addEventListener("click", function() {
-    if (todoText.style.display === defaultTodoTextDisplay) {
-      todoText.style.display = "none";
+    if (todoText.style.display === "none") {
+      todoText.style.display = defaultTextDisplay;
     } else {
-      todoText.style.display = defaultTodoTextDisplay;
+      todoText.style.display = "none";
     }
   });
 
-  return todo;
+  todoList.appendChild(todo);
 }
 
-const todolist = document.getElementById("todolist");
-
-todolist.appendChild(todoElement({
-  title: "title1",
-  text: "Hello\nHello",
-  display: true
-}));
-todolist.appendChild(todoElement({
-  title: "title2",
-  text: "Hello",
-  display: true
-}));
-todolist.appendChild(todoElement({
-  title: "title3",
-  text: "Hello",
-  display: false
-}));
+addTodo({
+  display: true,
+  title: "a",
+  text: "A\n\tB\n\t\tC\n\tD"
+});
+addTodo({
+  display: true,
+  title: "b",
+  text: "A\n\tB\n\t\tC\n\t\t\tD"
+});
+addTodo({
+  display: true,
+  title: "c",
+  text: "A\n\tB\n\t\tC\n\t\tD"
+});
