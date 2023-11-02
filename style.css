@@ -22,6 +22,9 @@ body {
   background: #404040;
   margin: 5px;
   padding: 3px;
+  /* ============== */
+  display: inline-block;
+  /* ============== */
 }
 
 .todotitle {
