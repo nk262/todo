@@ -10,12 +10,20 @@ body {
   height: 100vh;
 }
 
-#todolist {
+#todoList {
   background: #000000;
-  width: 90vw;
+  width: 80vw;
   margin: auto;
   margin-top: 5px;
   padding: 2px;
+  border-radius: 5px;
+}
+
+#todoList > h1 {
+  user-select: none;
+  -webkit-user-select: none;
+  margin: 4px;
+  text-align: center;
 }
 
 .todo {
@@ -23,17 +31,17 @@ body {
   margin: 5px;
   padding: 3px;
   min-width: 4rem;
-  /* ============== */
-  display: inline-block;
-  /* ============== */
+  border-radius: 5px;
 }
 
-.todotitle {
+.todoTitle {
+  user-select: none;
+  -webkit-user-select: none;
   font-size: large;
   margin: 0;
 }
 
-.todotext {
+.todoText {
   font-size: medium;
   margin: 0;
   padding: 4px;
