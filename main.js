@@ -1,5 +1,5 @@
 "use strict";
-
+/*
 class Todo {
   constructor() {
     this.list = [];
@@ -218,3 +218,27 @@ if (TODO_LIST) {
 }
 
 TODO.display();
+*/
+
+class Todo {
+  constructor(targetElement) {
+    this.root = targetElement;
+    this.root.style.overflow = "scroll";
+  }
+}
+
+
+
+let a = document.createElement("div");
+Object.assign(a.style, {
+  background: "#444444",
+  width: "400px",
+  height: "300px",
+  margin: "10px"
+});
+document.body.appendChild(a);
+
+
+
+const TODO = new Todo(a);
+
