@@ -52,6 +52,9 @@ class Todo {
     todo.innerText = data.title;
     todo.addEventListener("click", e => {
       this.editIndex = [...this.todoList.children].indexOf(e.target);
+      this.allDeselect();
+      this.list[this.editIndex].selected = true;
+      this.display();
       this.openEditor(this.editIndex);
     });
     return todo;
@@ -139,6 +142,16 @@ class Todo {
     this.list = newList;
   }
   clear() { this.list = [] }
+  allSelect() {
+    for (let data of this.list) {
+      data.selected = true;
+    }
+  }
+  allDeselect() {
+    for (let data of this.list) {
+      data.selected = false;
+    }
+  }
   display() {
     if (!this.todoList) return;
     this.todoList.innerHTML = "";
