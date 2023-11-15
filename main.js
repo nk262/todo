@@ -83,7 +83,7 @@ class Todo {
     topBar.id = id;
     Object.assign(topBar.style, {
         position: "fixed",
-        zIndex: "102",
+        zIndex: "99",
         top: "0", left: "0",
         width: "100%",
         height: "30px",
