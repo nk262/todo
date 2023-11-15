@@ -33,7 +33,10 @@ class Todo {
       width: "100%",
       height: "100%"
     });
-    todoOverlay.addEventListener("click", this.hideOverlay.bind(this));
+    todoOverlay.addEventListener("click", e => {
+      this.editorSave(this.editIndex);
+      this.closeEditor();
+    });
     return todoOverlay;
   }
   #createTodoList(id) {
@@ -46,6 +49,7 @@ class Todo {
     todo.innerText = data.title;
     todo.addEventListener("click", e => {
       this.editIndex = [...this.todoList.children].indexOf(e.target);
+      this.openEditor(this.editIndex);
     });
     return todo;
   }
@@ -55,9 +59,6 @@ class Todo {
       value: "Hi!",
       language: "markdown",
       theme: "vs-dark",
-    });
-    this.todoEditor.getModel().onDidChangeContent(e => {
-      this.list[this.editIndex].text = this.todoEditor.getValue();
     });
   }
   init(targetElement) {
@@ -91,10 +92,16 @@ class Todo {
     this.todoOverlay.style.display = "none";
   }
   openEditor(index) {
-    
+    if (!this.todoEditor) return;
+    this.showOverlay();
+    this.todoEditor.setValue(this.list[index].text);
+  }
+  editorSave(index) {
+    if (!this.todoEditor) return;
+    this.list[index].text = this.todoEditor.getValue();
   }
   closeEditor() {
-    if (!this.todoOverlay) return;
+    if (!this.todoEditor) return;
     this.hideOverlay();
   }
 }
