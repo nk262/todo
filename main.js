@@ -44,6 +44,9 @@ class Todo {
   #createTodo(data) {
     const todo = document.createElement("div");
     todo.innerText = data.title;
+    todo.addEventListener("click", e => {
+      this.editIndex = [...this.todoList.children].indexOf(e.target);
+    });
     return todo;
   }
   #initTodoEditor(targetElement) {
@@ -87,7 +90,10 @@ class Todo {
     if (!this.todoOverlay) return;
     this.todoOverlay.style.display = "none";
   }
-  closeOverlay() {
+  openEditor(index) {
+    
+  }
+  closeEditor() {
     if (!this.todoOverlay) return;
     this.hideOverlay();
   }
