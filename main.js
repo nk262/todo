@@ -60,6 +60,9 @@ class Todo {
       language: "markdown",
       theme: "vs-dark",
     });
+    this.todoEditor.getModel().onDidChangeContent(e => {
+      this.editorSave(this.editIndex);
+    });
   }
   init(targetElement) {
     this.todoList = this.#createTodoList("todo-list");
