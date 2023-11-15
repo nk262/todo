@@ -4,7 +4,7 @@ class Todo {
   constructor() {
     this.list = [];
   }
-  #createTodoEditor(id) {
+  #createTodoEditorContainer(id) {
     const editorContainer = document.createElement("div");
     editorContainer.id = id;
     Object.assign(editorContainer.style, {
@@ -50,11 +50,17 @@ class Todo {
     this.todoList = this.#createTodoList("todo-list");
     
     this.todoOverlay = this.#createTodoOverlay("todo-overlay");
-    this.todoEditor = this.#createTodoEditor("todo-editor");
-    this.todoOverlay.appendChild(this.todoEditor);
+    this.todoEditorContainer = this.#createTodoEditorContainer("todo-editor");
+    this.todoOverlay.appendChild(this.todoEditorContainer);
     
     targetElement.appendChild(this.todoList);
     targetElement.appendChild(this.todoOverlay);
+
+    this.todoEditor = monaco.editor.create(this.todoEditorContainer, {
+      value: "Test",
+      language: "markdown",
+      theme: "vs-dark",
+    });
   }
   add(data) { this.list.push(data) }
   clear() { this.list = [] }
@@ -73,6 +79,10 @@ class Todo {
   hideOverlay() {
     if (!this.todoOverlay) return;
     this.todoOverlay.style.display = "none";
+  }
+  closeOverlay() {
+    if (!this.todoOverlay) return;
+    this.hideOverlay();
   }
 }
 
@@ -98,11 +108,5 @@ TODO.add({
 
 
 TODO.display();
-
-let editor = monaco.editor.create(TODO.todoEditor, {
-  value: "Test",
-  language: "markdown",
-  theme: "vs-dark",
-});
 
 TODO.hideOverlay();
