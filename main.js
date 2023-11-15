@@ -212,7 +212,7 @@ for (let i = 0; i < 10; i++) {
   TODO.add({
     title: "This is test title ["+i+"]",
     text: "This is test text ["+i+"]",
-    selected: true
+    selected: false
   });
 }
 
