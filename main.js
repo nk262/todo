@@ -42,6 +42,9 @@ class Todo {
   #createTodoList(id) {
     const todoList = document.createElement("div");
     todoList.id = id;
+    Object.assign(todoList.style, {
+      marginTop: "10px"
+    });
     return todoList;
   }
   #createTodo(data) {
@@ -55,8 +58,15 @@ class Todo {
   }
   #createTopBar(id) {
     const topBar = document.createElement("div");
+    topBar.id = id;
     Object.assign(topBar.style, {
-      // todo //
+        position: "fixed",
+        zIndex: "102",
+        top: "0", left: "0",
+        width: "100%",
+        height: "10px",
+        background: "#363636",
+        boxSizing: "border-box"
     });
     return topBar;
   }
@@ -126,18 +136,12 @@ TODO.init(document.body);
 
 
 // test add //
-TODO.add({
-  title: "This is test title [1]",
-  text: "This is test text [1]"
-});
-TODO.add({
-  title: "This is test title [2]",
-  text: "This is test text [2]"
-});
-TODO.add({
-  title: "This is test title [3]",
-  text: "This is test text [3]"
-});
+for (let i = 0; i < 100; i++) {
+  TODO.add({
+    title: "This is test title ["+i+"]",
+    text: "This is test text ["+i+"]"
+  });
+}
 
 
 TODO.display();
