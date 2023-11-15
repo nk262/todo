@@ -145,6 +145,7 @@ class Todo {
     targetElement.appendChild(this.todoOverlay);
 
     this.#initTodoEditor(this.todoEditorContainer);
+    this.hideOverlay();
   }
   add(data) { this.list.push(data) }
   removeSelect() {
@@ -217,4 +218,3 @@ if (TODO_LIST) {
 }
 
 TODO.display();
-TODO.hideOverlay();
