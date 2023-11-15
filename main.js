@@ -25,7 +25,6 @@ class Todo {
     todoOverlay.id = id;
     Object.assign(todoOverlay.style, {
       background: "#34343490",
-      display: "none",
       margin: "0",
       padding: "0",
       zIndex: "100",
@@ -99,10 +98,10 @@ TODO.add({
 
 TODO.display();
 
-window.addEventListener("load", () => {
-  monaco.editor.create(TODO.todoEditor, {
-    value: "Test",
-    language: "markdown",
-    theme: "vs-dark",
-  });
+let editor = monaco.editor.create(TODO.todoEditor, {
+  value: "Test",
+  language: "markdown",
+  theme: "vs-dark",
 });
+
+TODO.hideOverlay();
