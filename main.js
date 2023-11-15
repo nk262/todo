@@ -53,6 +53,13 @@ class Todo {
     });
     return todo;
   }
+  #createTopBar(id) {
+    const topBar = document.createElement("div");
+    Object.assign(topBar.style, {
+      // todo //
+    });
+    return topBar;
+  }
   #initTodoEditor(targetElement) {
     this.editIndex = 0;
     this.todoEditor = monaco.editor.create(targetElement, {
@@ -67,11 +74,14 @@ class Todo {
   init(targetElement) {
     this.todoList = this.#createTodoList("todo-list");
     
+    this.topBar = this.#createTopBar("todo-top-bar");
+
     this.todoOverlay = this.#createTodoOverlay("todo-overlay");
     this.todoEditorContainer = this.#createTodoEditorContainer("todo-editor");
     this.todoOverlay.appendChild(this.todoEditorContainer);
     
     targetElement.appendChild(this.todoList);
+    targetElement.appendChild(this.topBar);
     targetElement.appendChild(this.todoOverlay);
 
     this.#initTodoEditor(this.todoEditorContainer);
