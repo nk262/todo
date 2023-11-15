@@ -248,6 +248,7 @@ class Todo {
       width: "100%"
     });
     element.innerText = data.title;
+    if (data.selected) { element.style.background = "#305030" }
     return element;
   }
   constructor(targetElement) {
@@ -267,6 +268,24 @@ class Todo {
   }
   clear() {
     this.list = [];
+    this.display();
+  }
+  select(...indexes) {
+    for (let index of indexes) {
+      this.list[index].selected = true;
+    }
+    this.display();
+  }
+  deselect(...indexes) {
+    for (let index of indexes) {
+      this.list[index].selected = false;
+    }
+    this.display();
+  }
+  toggleSelect(...indexes) {
+    for (let index of indexes) {
+      this.list[index].selected = !this.list[index].selected;
+    }
     this.display();
   }
   display() {
