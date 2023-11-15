@@ -221,6 +221,15 @@ TODO.display();
 */
 
 class Todo {
+  #createTopBar(id) {
+    const element = document.createElement("div");
+    element.id = id;
+    Object.assign(element.style, {
+      background: "#503030",
+      width: "100%"
+    });
+    return element;
+  }
   #createTodoList(id) {
     const element = document.createElement("div");
     element.id = id;
@@ -228,18 +237,7 @@ class Todo {
       overflow: "scroll",
       background: "#303050",
       width: "100%",
-      maxHeight: "100%",
-      cssFloat: "left"
-    });
-    return element;
-  }
-  #createTopBar(id) {
-    const element = document.createElement("div");
-    element.id = id;
-    Object.assign(element.style, {
-      background: "#503030",
-      width: "100%",
-      cssFloat: "left"
+      maxHeight: "100%"
     });
     return element;
   }
@@ -265,5 +263,10 @@ document.body.appendChild(a);
 
 const TODO = new Todo(a);
 
-TODO.element.topBar.innerHTML = `<h1>TopBar</h1>`;
-TODO.element.todoList.innerHTML = `<h1>TodoList</h1><br><br><br><br><br><br><h1>TodoList</h1>`;
+TODO.element.topBar.innerHTML = `<pre>TopBar</pre>`;
+TODO.element.todoList.innerHTML =
+`
+<pre>
+TodoList
+</pre>
+`;
