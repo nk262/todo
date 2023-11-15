@@ -57,7 +57,19 @@ class Todo {
     return todo;
   }
   #createTopBarButton(text, handler) {
-    // todo //
+    const topBarButton = document.createElement("button");
+    topBarButton.innerText = text;
+    Object.assign(topBar.style, {
+        position: "fixed",
+        zIndex: "102",
+        top: "0", left: "0",
+        width: "100%",
+        height: "30px",
+        background: "#363636",
+        boxSizing: "border-box"
+    });
+    topBarButton.addEventListener("click", handler.bind(this));
+    return topBarButton;
   }
   #createTopBar(id) {
     const topBar = document.createElement("div");
