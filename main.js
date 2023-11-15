@@ -43,7 +43,7 @@ class Todo {
     const todoList = document.createElement("div");
     todoList.id = id;
     Object.assign(todoList.style, {
-      marginTop: "10px"
+      marginTop: "30px"
     });
     return todoList;
   }
@@ -56,6 +56,9 @@ class Todo {
     });
     return todo;
   }
+  #createTopBarButton(text, handler) {
+    // todo //
+  }
   #createTopBar(id) {
     const topBar = document.createElement("div");
     topBar.id = id;
@@ -64,7 +67,7 @@ class Todo {
         zIndex: "102",
         top: "0", left: "0",
         width: "100%",
-        height: "10px",
+        height: "30px",
         background: "#363636",
         boxSizing: "border-box"
     });
