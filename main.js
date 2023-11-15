@@ -33,6 +33,7 @@ class Todo {
       width: "100%",
       height: "100%"
     });
+    todoOverlay.addEventListener("click", this.hideOverlay.bind(this));
     return todoOverlay;
   }
   #createTodoList(id) {
