@@ -59,14 +59,12 @@ class Todo {
   #createTopBarButton(text, handler) {
     const topBarButton = document.createElement("button");
     topBarButton.innerText = text;
-    Object.assign(topBar.style, {
-        position: "fixed",
-        zIndex: "102",
-        top: "0", left: "0",
-        width: "100%",
-        height: "30px",
-        background: "#363636",
-        boxSizing: "border-box"
+    Object.assign(topBarButton.style, {
+        background: "#909090",
+        color: "#0000ff",
+        border: "none",
+        margin: "2px",
+        height: "calc(100% - 4px)"
     });
     topBarButton.addEventListener("click", handler.bind(this));
     return topBarButton;
@@ -83,6 +81,10 @@ class Todo {
         background: "#363636",
         boxSizing: "border-box"
     });
+    const addButton = this.#createTopBarButton("Add", e => {
+      console.log("Click Add Button");
+    });
+    topBar.appendChild(addButton);
     return topBar;
   }
   #initTodoEditor(targetElement) {
