@@ -227,7 +227,8 @@ class Todo {
     Object.assign(element.style, {
       overflow: "scroll",
       background: "#303050",
-      width: "100%"
+      width: "100%",
+      cssFloat: "left"
     });
     return element;
   }
@@ -236,14 +237,15 @@ class Todo {
     element.id = id;
     Object.assign(element.style, {
       background: "#503030",
-      width: "100%"
+      width: "100%",
+      cssFloat: "left"
     });
     return element;
   }
   constructor(targetElement) {
     this.element = { root : targetElement };
     this.element.topBar   = this.element.root.appendChild(this.#createTopBar("todo-top-bar"));
-    this.element.todoList = this.element.root.appendChild(this.#createTopBar("todo-list"));
+    this.element.todoList = this.element.root.appendChild(this.#createTodoList("todo-list"));
   }
 }
 
@@ -262,3 +264,5 @@ document.body.appendChild(a);
 
 const TODO = new Todo(a);
 
+TODO.element.topBar.innerHTML = `<h1>TopBar</h1>`;
+TODO.element.todoList.innerHTML = `<h1>TodoList</h1>`;
