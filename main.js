@@ -241,10 +241,39 @@ class Todo {
     });
     return element;
   }
+  #createTodo(data) {
+    const element = document.createElement("div");
+    Object.assign(element.style, {
+      background: "#305050",
+      width: "100%"
+    });
+    element.innerText = data.title;
+    return element;
+  }
   constructor(targetElement) {
     this.element = { root : targetElement };
     this.element.topBar   = this.element.root.appendChild(this.#createTopBar("todo-top-bar"));
     this.element.todoList = this.element.root.appendChild(this.#createTodoList("todo-list"));
+    
+    this.list = [];
+  }
+  add(data) {
+    this.list.push({
+      title: data.title,
+      value: data.value,
+      selected: false
+    });
+    this.display();
+  }
+  clear() {
+    this.list = [];
+    this.display();
+  }
+  display() {
+    this.element.todoList.innerHTML = "";
+    for (let data of this.list) {
+      this.element.todoList.appendChild(this.#createTodo(data));
+    }
   }
 }
 
@@ -263,36 +292,9 @@ document.body.appendChild(a);
 
 const TODO = new Todo(a);
 
-TODO.element.topBar.innerHTML = `wqdqdwdwqdqwwd`;
-TODO.element.todoList.innerText =
-`
-a
-a
-a
-a
-a
-a
-a
-b
-b
-b
-b
-b
-b
-c
-c
-c
-c
-c
-c
-b
-b
-b
-b
-c
-c
-c
-c
-c
-c
-`;
+for (let i = 0; i < 10; i++) {
+  TODO.add({
+    title: "Title" + i,
+    value: "Text" + i
+  });
+}
