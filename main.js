@@ -263,10 +263,36 @@ document.body.appendChild(a);
 
 const TODO = new Todo(a);
 
-TODO.element.topBar.innerHTML = `<pre>TopBar</pre>`;
-TODO.element.todoList.innerHTML =
+TODO.element.topBar.innerHTML = `wqdqdwdwqdqwwd`;
+TODO.element.todoList.innerText =
 `
-<pre>
-TodoList
-</pre>
+a
+a
+a
+a
+a
+a
+a
+b
+b
+b
+b
+b
+b
+c
+c
+c
+c
+c
+c
+b
+b
+b
+b
+c
+c
+c
+c
+c
+c
 `;
