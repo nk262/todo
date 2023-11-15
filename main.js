@@ -3,6 +3,7 @@
 class Todo {
   constructor() {
     this.list = [];
+    this.selectMode = false;
   }
   #createTodoEditorContainer(id) {
     const editorContainer = document.createElement("div");
@@ -52,6 +53,11 @@ class Todo {
     todo.innerText = data.title;
     todo.addEventListener("click", e => {
       this.editIndex = [...this.todoList.children].indexOf(e.target);
+      if (this.selectMode) {
+        this.list[this.editIndex].selected = !this.list[this.editIndex].selected;
+        this.display();
+        return;
+      }
       this.allDeselect();
       this.list[this.editIndex].selected = true;
       this.display();
@@ -100,9 +106,18 @@ class Todo {
       this.list = [];
       this.display();
     });
+    const selectButton = this.#createTopBarButton("Select", e => {
+      this.selectMode = !this.selectMode;
+      if (this.selectMode) {
+        selectButton.innerText = "[Select]";
+      } else {
+        selectButton.innerText = "Select";
+      }
+    });
     topBar.appendChild(addButton);
     topBar.appendChild(removeButton);
     topBar.appendChild(clearButton);
+    topBar.appendChild(selectButton);
     return topBar;
   }
   #initTodoEditor(targetElement) {
