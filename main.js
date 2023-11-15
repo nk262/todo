@@ -92,8 +92,8 @@ class Todo {
     });
     const addButton = this.#createTopBarButton("Add", e => {
       this.add({
-        title: "Add test [title]",
-        text: "Add test [text]",
+        title: "Add test ["+this.list.length+"]",
+        text: "Add test ["+this.list.length+"]",
         selected: false
       });
       this.display();
