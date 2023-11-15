@@ -46,6 +46,17 @@ class Todo {
     todo.innerText = data.title;
     return todo;
   }
+  #initTodoEditor(targetElement) {
+    this.editIndex = 0;
+    this.todoEditor = monaco.editor.create(targetElement, {
+      value: "Hi!",
+      language: "markdown",
+      theme: "vs-dark",
+    });
+    this.todoEditor.getModel().onDidChangeContent(e => {
+      this.list[this.editIndex].text = this.todoEditor.getValue();
+    });
+  }
   init(targetElement) {
     this.todoList = this.#createTodoList("todo-list");
     
@@ -56,11 +67,7 @@ class Todo {
     targetElement.appendChild(this.todoList);
     targetElement.appendChild(this.todoOverlay);
 
-    this.todoEditor = monaco.editor.create(this.todoEditorContainer, {
-      value: "Test",
-      language: "markdown",
-      theme: "vs-dark",
-    });
+    this.#initTodoEditor(this.todoEditorContainer);
   }
   add(data) { this.list.push(data) }
   clear() { this.list = [] }
