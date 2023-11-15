@@ -228,6 +228,7 @@ class Todo {
       overflow: "scroll",
       background: "#303050",
       width: "100%",
+      maxHeight: "100%",
       cssFloat: "left"
     });
     return element;
@@ -265,4 +266,4 @@ document.body.appendChild(a);
 const TODO = new Todo(a);
 
 TODO.element.topBar.innerHTML = `<h1>TopBar</h1>`;
-TODO.element.todoList.innerHTML = `<h1>TodoList</h1>`;
+TODO.element.todoList.innerHTML = `<h1>TodoList</h1><br><br><br><br><br><br><h1>TodoList</h1>`;
