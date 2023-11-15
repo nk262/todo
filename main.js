@@ -221,9 +221,29 @@ TODO.display();
 */
 
 class Todo {
+  #createTodoList(id) {
+    const element = document.createElement("div");
+    element.id = id;
+    Object.assign(element.style, {
+      overflow: "scroll",
+      background: "#303050",
+      width: "100%"
+    });
+    return element;
+  }
+  #createTopBar(id) {
+    const element = document.createElement("div");
+    element.id = id;
+    Object.assign(element.style, {
+      background: "#503030",
+      width: "100%"
+    });
+    return element;
+  }
   constructor(targetElement) {
-    this.root = targetElement;
-    this.root.style.overflow = "scroll";
+    this.element = { root : targetElement };
+    this.element.topBar   = this.element.root.appendChild(this.#createTopBar("todo-top-bar"));
+    this.element.todoList = this.element.root.appendChild(this.#createTopBar("todo-list"));
   }
 }
 
