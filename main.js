@@ -167,6 +167,9 @@ class Todo {
       data.selected = false;
     }
   }
+  save() {
+    localStorage.setItem("todo", JSON.stringify(this.list));
+  }
   display() {
     if (!this.todoList) return;
     this.todoList.innerHTML = "";
@@ -177,6 +180,7 @@ class Todo {
       }
       this.todoList.appendChild(todo);
     }
+    this.save();
   }
   showOverlay() {
     if (!this.todoOverlay) return;
@@ -194,6 +198,7 @@ class Todo {
   editorSave(index) {
     if (!this.todoEditor) return;
     this.list[index].text = this.todoEditor.getValue();
+    this.save();
   }
   closeEditor() {
     if (!this.todoEditor) return;
@@ -206,17 +211,10 @@ const TODO = new Todo();
 
 TODO.init(document.body);
 
-
-// test add //
-for (let i = 0; i < 10; i++) {
-  TODO.add({
-    title: "This is test title ["+i+"]",
-    text: "This is test text ["+i+"]",
-    selected: false
-  });
+let TODO_LIST = localStorage.getItem("todo");
+if (TODO_LIST) {
+  TODO.list = JSON.parse(TODO_LIST);
 }
 
-
 TODO.display();
-
 TODO.hideOverlay();
