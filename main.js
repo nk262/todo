@@ -307,13 +307,11 @@ Object.assign(a.style, {
 });
 document.body.appendChild(a);
 
-
-
 const TODO = new Todo(a);
 
 for (let i = 0; i < 10; i++) {
   TODO.add({
-    title: "Title" + i,
-    value: "Text" + i
+    title: "Title [" + i + "]",
+    value: "Text [" + i + "]"
   });
 }
