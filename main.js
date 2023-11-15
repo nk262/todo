@@ -82,7 +82,11 @@ class Todo {
         boxSizing: "border-box"
     });
     const addButton = this.#createTopBarButton("Add", e => {
-      console.log("Click Add Button");
+      this.add({
+        title: "Add test [title]",
+        text: "Add test [text]"
+      });
+      this.display();
     });
     topBar.appendChild(addButton);
     return topBar;
@@ -153,7 +157,7 @@ TODO.init(document.body);
 
 
 // test add //
-for (let i = 0; i < 100; i++) {
+for (let i = 0; i < 10; i++) {
   TODO.add({
     title: "This is test title ["+i+"]",
     text: "This is test text ["+i+"]"
