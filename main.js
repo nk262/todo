@@ -89,11 +89,16 @@ class Todo {
       });
       this.display();
     });
+    const removeButton = this.#createTopBarButton("Remove", e => {
+      this.removeSelect();
+      this.display();
+    });
     const clearButton = this.#createTopBarButton("Clear", e => {
       this.list = [];
       this.display();
     });
     topBar.appendChild(addButton);
+    topBar.appendChild(removeButton);
     topBar.appendChild(clearButton);
     return topBar;
   }
