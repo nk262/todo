@@ -84,11 +84,17 @@ class Todo {
     const addButton = this.#createTopBarButton("Add", e => {
       this.add({
         title: "Add test [title]",
-        text: "Add test [text]"
+        text: "Add test [text]",
+        selected: false
       });
       this.display();
     });
+    const clearButton = this.#createTopBarButton("Clear", e => {
+      this.list = [];
+      this.display();
+    });
     topBar.appendChild(addButton);
+    topBar.appendChild(clearButton);
     return topBar;
   }
   #initTodoEditor(targetElement) {
@@ -118,12 +124,24 @@ class Todo {
     this.#initTodoEditor(this.todoEditorContainer);
   }
   add(data) { this.list.push(data) }
+  removeSelect() {
+    const newList = [];
+    for (let data of this.list) {
+      if (!data.selected) {
+        newList.push(data)
+      }
+    }
+    this.list = newList;
+  }
   clear() { this.list = [] }
   display() {
     if (!this.todoList) return;
     this.todoList.innerHTML = "";
     for (let data of this.list) {
       const todo = this.#createTodo(data);
+      if (data.selected) {
+        todo.style.color = "pink";
+      }
       this.todoList.appendChild(todo);
     }
   }
@@ -160,7 +178,8 @@ TODO.init(document.body);
 for (let i = 0; i < 10; i++) {
   TODO.add({
     title: "This is test title ["+i+"]",
-    text: "This is test text ["+i+"]"
+    text: "This is test text ["+i+"]",
+    selected: true
   });
 }
 
