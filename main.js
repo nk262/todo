@@ -242,8 +242,8 @@ class Todo {
     });
     element.appendChild(this.#createButton("Add", e => {
       this.add({
-        title: "Test",
-        value: "text!"
+        title: "Test" + this.list.length,
+        value: "text!" + this.list.length
       });
     }));
     element.appendChild(this.#createButton("Clear", e => {
