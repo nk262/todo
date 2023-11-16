@@ -253,6 +253,10 @@ class Todo {
     });
     element.innerText = data.title;
     if (data.selected) { element.style.background = "#305030" }
+    element.addEventListener("click", e => {
+      const index = [...e.target.parentElement.children].indexOf(e.target);
+      this.toggleSelect(index);
+    });
     return element;
   }
   constructor(targetElement) {
