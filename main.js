@@ -231,5 +231,14 @@ Object.assign(a.style, {
 document.body.appendChild(a);
 
 const TODO = new Todo(a);
-
 TODO.load();
+
+
+
+
+
+
+
+
+
+
