@@ -255,7 +255,7 @@ class Todo {
     if (data.selected) { element.style.background = "#305030" }
     element.addEventListener("click", e => {
       const index = [...e.target.parentElement.children].indexOf(e.target);
-      this.toggleSelect(index);
+      console.log(this.list[index].value);
     });
     return element;
   }
@@ -321,7 +321,7 @@ const TODO = new Todo(a);
 
 for (let i = 0; i < 10; i++) {
   TODO.add({
-    title: "Title [" + i + "] ========================================",
+    title: "Title [" + i + "]",
     value: "Text [" + i + "]"
   });
 }
