@@ -245,7 +245,9 @@ class Todo {
     const element = document.createElement("div");
     Object.assign(element.style, {
       background: "#305050",
-      width: "100%"
+      width: "calc(100%-20px)",
+      margin: "10px",
+      padding: "5px"
     });
     element.innerText = data.title;
     if (data.selected) { element.style.background = "#305030" }
@@ -303,7 +305,8 @@ Object.assign(a.style, {
   background: "#444444",
   width: "400px",
   height: "300px",
-  margin: "10px"
+  margin: "10px",
+  border: "solid 4px #666666"
 });
 document.body.appendChild(a);
 
