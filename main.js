@@ -301,8 +301,7 @@ class Todo {
     element.appendChild(this.#createTodoButtonArea());
     if (data.selected) { element.style.background = "#305030" }
     element.addEventListener("click", e => {
-      const index = [...e.target.parentElement.children].indexOf(e.target);
-      console.log(this.list[index].value);
+      console.log(e.target);
     });
     return element;
   }
