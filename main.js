@@ -221,6 +221,20 @@ TODO.display();
 */
 
 class Todo {
+  #createButton(text, handler) {
+    const element = document.createElement("button");
+    Object.assign(element.style, {
+      background: "#404040",
+      color: "#eeeeee",
+      margin: "5px",
+      padding: "8px",
+      border: "none",
+      borderRadius: "5px"
+    });
+    element.innerText = text;
+    element.addEventListener("click", handler.bind(this));
+    return element;
+  }
   #createTopBar(id) {
     const element = document.createElement("div");
     element.id = id;
@@ -228,6 +242,9 @@ class Todo {
       background: "#503030",
       width: "100%"
     });
+    element.appendChild(this.#createButton("Add", e => {
+      console.log("Add Button")
+    }));
     return element;
   }
   #createTodoList(id) {
@@ -236,8 +253,7 @@ class Todo {
     Object.assign(element.style, {
       overflow: "scroll",
       background: "#203020",
-      width: "100%",
-      maxHeight: "100%"
+      width: "100%"
     });
     return element;
   }
@@ -261,6 +277,10 @@ class Todo {
   }
   constructor(targetElement) {
     this.element = { root : targetElement };
+    Object.assign(this.element.root.style, {
+      display: "flex",
+      flexDirection: "column"
+    });
     this.element.topBar   = this.element.root.appendChild(this.#createTopBar("todo-top-bar"));
     this.element.todoList = this.element.root.appendChild(this.#createTodoList("todo-list"));
     
