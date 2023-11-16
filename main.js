@@ -1,6 +1,17 @@
 "use strict";
 
 class Todo {
+  #createTodoMain(id) {
+    const element = document.createElement("div");
+    element.id = id;
+    Object.assign(element.style, {
+      display: "flex",
+      flexDirection: "column",
+      width: "100%",
+      height: "100%"
+    });
+    return element;
+  }
   #createButton(text, handler, style={}) {
     const element = document.createElement("button");
     Object.assign(element.style, {
@@ -94,14 +105,31 @@ class Todo {
     element.appendChild(this.#createTodoButtonArea());
     return element;
   }
+  #createOverlay(id) {
+    const element = document.createElement("div");
+    element.id = id;
+    Object.assign(element.style, {
+      background: "#f4343490",
+      position: "absolute",
+      top: "0", left: "0",
+      width: "100%",
+      height: "100%",
+      zIndex: "2147483647",
+      display: "none"
+    });
+    return element;
+  }
   constructor(targetElement) {
     this.element = { root : targetElement };
     Object.assign(this.element.root.style, {
-      display: "flex",
-      flexDirection: "column"
+      position: "relative"
     });
-    this.element.topBar   = this.element.root.appendChild(this.#createTopBar("todo-top-bar"));
-    this.element.todoList = this.element.root.appendChild(this.#createTodoList("todo-list"));
+    
+    this.element.main = this.element.root.appendChild(this.#createTodoMain("todo-main"));
+    this.element.topBar   = this.element.main.appendChild(this.#createTopBar("todo-top-bar"));
+    this.element.todoList = this.element.main.appendChild(this.#createTodoList("todo-list"));
+    
+    this.element.overlay  = this.element.root.appendChild(this.#createOverlay("todo-overlay"));
     
     this.list = [];
   }
