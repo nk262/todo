@@ -162,6 +162,16 @@ class Todo {
       this.element.todoList.appendChild(this.#createTodo(data));
     }
   }
+  save(key="todo") {
+    localStorage.setItem(key, JSON.stringify(this.list));
+  }
+  load(key="todo") {
+    const list = localStorage.getItem(key);
+    if (list) {
+      this.list = JSON.parse(list);
+      this.display();
+    }
+  }
 }
 
 
@@ -178,9 +188,4 @@ document.body.appendChild(a);
 
 const TODO = new Todo(a);
 
-for (let i = 0; i < 10; i++) {
-  TODO.add({
-    title: "Title [" + i + "]",
-    value: "Text [" + i + "]"
-  });
-}
+TODO.load();
