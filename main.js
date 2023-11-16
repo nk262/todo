@@ -243,7 +243,13 @@ class Todo {
       width: "100%"
     });
     element.appendChild(this.#createButton("Add", e => {
-      console.log("Add Button")
+      this.add({
+        title: "Test",
+        value: "text!"
+      });
+    }));
+    element.appendChild(this.#createButton("Clear", e => {
+      this.clear();
     }));
     return element;
   }
