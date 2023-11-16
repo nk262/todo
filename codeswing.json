@@ -1,4 +1,4 @@
 {
-  "scripts": [],
-  "styles": []
+  "scripts": ["./main.js"],
+  "styles": ["./style.css"]
 }
