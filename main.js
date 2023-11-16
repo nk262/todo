@@ -114,10 +114,12 @@ class Todo {
       value: data.value,
       selected: false
     });
+    this.save();
     this.display();
   }
   rename(index, title="") {
     this.list[index].title = title;
+    this.save();
     this.display();
   }
   remove(...indexes) {
@@ -128,10 +130,12 @@ class Todo {
       }
     }
     this.list = newList;
+    this.save();
     this.display();
   }
   clear() {
     this.list = [];
+    this.save();
     this.display();
   }
   select(...indexes) {
