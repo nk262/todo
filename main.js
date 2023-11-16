@@ -79,9 +79,9 @@ class Todo {
       borderRadius: "5px",
       overflowX: "scroll"
     });
+    if (data.selected) { element.style.background = "#305030" }
     element.appendChild(this.#createTodoTitle(data.title));
     element.appendChild(this.#createTodoButtonArea());
-    if (data.selected) { element.style.background = "#305030" }
     return element;
   }
   constructor(targetElement) {
