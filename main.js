@@ -84,9 +84,15 @@ class Todo {
     });
     element.appendChild(this.#createButton("Rename", e => {
       this.rename(this.#getElementIndex(element.parentNode), this.prompt("title"));
+    }, {
+      margin: "2px",
+      padding: "4px"
     }));
     element.appendChild(this.#createButton("Remove", e => {
       this.remove(this.#getElementIndex(element.parentNode));
+    }, {
+      margin: "2px",
+      padding: "4px"
     }));
     return element;
   }
