@@ -219,7 +219,6 @@ class Todo {
 }
 
 
-
 let a = document.createElement("div");
 Object.assign(a.style, {
   background: "#444444",
@@ -233,12 +232,10 @@ document.body.appendChild(a);
 const TODO = new Todo(a);
 TODO.load();
 
-
-
-
-
-
-
-
-
-
+TODO.clear();
+for (let i = 0; i < 10; i++) {
+  TODO.add({
+    title: i,
+    value: "ABC"
+  });
+}
