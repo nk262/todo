@@ -71,6 +71,9 @@ class Todo {
       padding: "5px",
       whiteSpace: "nowrap"
     });
+    element.appendChild(this.#createButton("Rename", e => {
+      this.rename(this.#getElementIndex(element.parentNode), prompt("title"));
+    }));
     element.appendChild(this.#createButton("Remove", e => {
       this.remove(this.#getElementIndex(element.parentNode));
     }));
@@ -111,6 +114,10 @@ class Todo {
       value: data.value,
       selected: false
     });
+    this.display();
+  }
+  rename(index, title="") {
+    this.list[index].title = title;
     this.display();
   }
   remove(...indexes) {
