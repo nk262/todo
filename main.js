@@ -6,8 +6,6 @@ class Todo {
     Object.assign(element.style, {
       background: "#404040",
       color: "#eeeeee",
-      margin: "5px",
-      padding: "8px",
       border: "none",
       borderRadius: "5px"
     });
@@ -28,9 +26,16 @@ class Todo {
         title: "Test" + this.list.length,
         value: "text!" + this.list.length
       });
+    }, {
+      margin: "5px",
+      marginLeft: "10px",
+      padding: "8px"
     }));
     element.appendChild(this.#createButton("Clear", e => {
       this.clear();
+    }, {
+      margin: "5px",
+      padding: "8px"
     }));
     return element;
   }
