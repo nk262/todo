@@ -7,7 +7,8 @@ class Todo {
       background: "#404040",
       color: "#eeeeee",
       border: "none",
-      borderRadius: "5px"
+      borderRadius: "5px",
+      userSelect: "none"
     });
     Object.assign(element.style, style);
     element.innerText = text;
