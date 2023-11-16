@@ -158,9 +158,8 @@ class Todo {
 let a = document.createElement("div");
 Object.assign(a.style, {
   background: "#444444",
-  width: "400px",
-  height: "300px",
-  margin: "10px",
+  width: "auto",
+  height: "70vh",
   border: "solid 4px #366696",
   borderRadius: "4px"
 });
