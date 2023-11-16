@@ -24,7 +24,7 @@ class Todo {
     });
     element.appendChild(this.#createButton("Add", e => {
       this.add({
-        title: "Test" + this.list.length,
+        title: this.prompt("title"),
         value: "text!" + this.list.length
       });
     }, {
@@ -72,7 +72,7 @@ class Todo {
       whiteSpace: "nowrap"
     });
     element.appendChild(this.#createButton("Rename", e => {
-      this.rename(this.#getElementIndex(element.parentNode), prompt("title"));
+      this.rename(this.#getElementIndex(element.parentNode), this.prompt("title"));
     }));
     element.appendChild(this.#createButton("Remove", e => {
       this.remove(this.#getElementIndex(element.parentNode));
@@ -151,6 +151,10 @@ class Todo {
       this.list[index].selected = !this.list[index].selected;
     }
     this.display();
+  }
+  prompt(text="") {
+    // todo //
+    return prompt(text);
   }
   display() {
     this.element.todoList.innerHTML = "";
