@@ -1,6 +1,6 @@
 "use strict";
-/*
-class Todo {
+
+class _Todo {
   constructor() {
     this.list = [];
     this.selectMode = false;
@@ -207,18 +207,16 @@ class Todo {
   }
 }
 
+// const TODO = new Todo();
 
-const TODO = new Todo();
+// TODO.init(document.body);
 
-TODO.init(document.body);
+// let TODO_LIST = localStorage.getItem("todo");
+// if (TODO_LIST) {
+//   TODO.list = JSON.parse(TODO_LIST);
+// }
 
-let TODO_LIST = localStorage.getItem("todo");
-if (TODO_LIST) {
-  TODO.list = JSON.parse(TODO_LIST);
-}
-
-TODO.display();
-*/
+// TODO.display();
 
 class Todo {
   #createButton(text, handler) {
@@ -284,7 +282,9 @@ class Todo {
       padding: "5px",
       whiteSpace: "nowrap"
     });
-    element.innerText = "+=+=+=+=+=+=";
+    element.appendChild(this.#createButton("Remove", e => {
+      this.remove(this.#getElementIndex(element.parentNode));
+    }));
     return element;
   }
   #createTodo(data) {
