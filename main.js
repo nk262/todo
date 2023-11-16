@@ -324,6 +324,16 @@ class Todo {
     });
     this.display();
   }
+  remove(...indexes) {
+    const newList = [];
+    for (let index = 0; index < this.list.length; index++) {
+      if (indexes.indexOf(index) === -1) {
+        newList.push(this.list[index]);
+      }
+    }
+    this.list = newList;
+    this.display();
+  }
   clear() {
     this.list = [];
     this.display();
