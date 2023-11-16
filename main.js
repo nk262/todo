@@ -235,7 +235,7 @@ class Todo {
     element.id = id;
     Object.assign(element.style, {
       overflow: "scroll",
-      background: "#303050",
+      background: "#203020",
       width: "100%",
       maxHeight: "100%"
     });
@@ -244,10 +244,12 @@ class Todo {
   #createTodo(data) {
     const element = document.createElement("div");
     Object.assign(element.style, {
-      background: "#305050",
-      width: "calc(100%-20px)",
-      margin: "10px",
-      padding: "5px"
+      background: "#306060",
+      margin: "8px",
+      padding: "5px",
+      borderRadius: "5px",
+      overflowX: "scroll",
+      whiteSpace: "nowrap"
     });
     element.innerText = data.title;
     if (data.selected) { element.style.background = "#305030" }
@@ -306,7 +308,8 @@ Object.assign(a.style, {
   width: "400px",
   height: "300px",
   margin: "10px",
-  border: "solid 4px #666666"
+  border: "solid 4px #366696",
+  borderRadius: "4px"
 });
 document.body.appendChild(a);
 
@@ -314,7 +317,7 @@ const TODO = new Todo(a);
 
 for (let i = 0; i < 10; i++) {
   TODO.add({
-    title: "Title [" + i + "]",
+    title: "Title [" + i + "] ========================================",
     value: "Text [" + i + "]"
   });
 }
