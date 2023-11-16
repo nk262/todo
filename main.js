@@ -1,7 +1,7 @@
 "use strict";
 
 class Todo {
-  #createButton(text, handler) {
+  #createButton(text, handler, style={}) {
     const element = document.createElement("button");
     Object.assign(element.style, {
       background: "#404040",
@@ -11,6 +11,7 @@ class Todo {
       border: "none",
       borderRadius: "5px"
     });
+    Object.assign(element.style, style);
     element.innerText = text;
     element.addEventListener("click", handler.bind(this));
     return element;
