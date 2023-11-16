@@ -300,9 +300,6 @@ class Todo {
     element.appendChild(this.#createTodoTitle(data.title));
     element.appendChild(this.#createTodoButtonArea());
     if (data.selected) { element.style.background = "#305030" }
-    element.addEventListener("click", e => {
-      console.log(e.target);
-    });
     return element;
   }
   constructor(targetElement) {
@@ -315,6 +312,9 @@ class Todo {
     this.element.todoList = this.element.root.appendChild(this.#createTodoList("todo-list"));
     
     this.list = [];
+  }
+  #getElementIndex(element) {
+    return [...element.parentNode.children].indexOf(element);
   }
   add(data) {
     this.list.push({
