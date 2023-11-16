@@ -263,17 +263,42 @@ class Todo {
     });
     return element;
   }
+  #createTodoTitle(text) {
+    const element = document.createElement("span");
+    Object.assign(element.style, {
+      background: "#205020",
+      overflowX: "scroll",
+      width: "100%",
+      padding: "5px",
+      whiteSpace: "nowrap"
+    });
+    element.innerText = text;
+    return element;
+  }
+  #createTodoButtonArea() {
+    const element = document.createElement("span");
+    Object.assign(element.style, {
+      background: "#205050",
+      overflowX: "scroll",
+      width: "30%",
+      padding: "5px",
+      whiteSpace: "nowrap"
+    });
+    element.innerText = "+=+=+=+=+=+=";
+    return element;
+  }
   #createTodo(data) {
     const element = document.createElement("div");
     Object.assign(element.style, {
+      display: "flex",
+      flexDirection: "row",
       background: "#306060",
       margin: "8px",
-      padding: "5px",
       borderRadius: "5px",
-      overflowX: "scroll",
-      whiteSpace: "nowrap"
+      overflowX: "scroll"
     });
-    element.innerText = data.title;
+    element.appendChild(this.#createTodoTitle(data.title));
+    element.appendChild(this.#createTodoButtonArea());
     if (data.selected) { element.style.background = "#305030" }
     element.addEventListener("click", e => {
       const index = [...e.target.parentElement.children].indexOf(e.target);
