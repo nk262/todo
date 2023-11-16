@@ -188,6 +188,12 @@ class Todo {
     // todo //
     return prompt(text);
   }
+  showOverlay() {
+    this.element.overlay.style.display = "block";
+  }
+  hideOverlay() {
+    this.element.overlay.style.display = "none";
+  }
   display() {
     this.element.todoList.innerHTML = "";
     for (let data of this.list) {
