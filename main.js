@@ -161,7 +161,7 @@ Object.assign(a.style, {
   width: "auto",
   height: "70vh",
   border: "solid 4px #366696",
-  borderRadius: "4px"
+  borderRadius: "10px"
 });
 document.body.appendChild(a);
 
