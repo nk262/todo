@@ -55,10 +55,11 @@ class TodoList {
       width: "100%"
     });
     element.appendChild(this.#createButton("Add", e => {
-      this.add({
+      const todo = this.newAdd({
         title: this.prompt("title"),
         value: "text!" + this.list.length
       });
+      todo.element.renameInput.focus();
     }, {
       margin: "5px",
       marginLeft: "10px",
@@ -110,7 +111,9 @@ class TodoList {
     element.value = title;
     element.addEventListener("keydown", e => {
       if (e.key == "Enter") {
-        this.rename(this.#getElementIndex(e.target.parentNode), e.target.value);
+        const index = this.#getElementIndex(e.target.parentNode);
+        this.rename(index, e.target.value);
+        this.display();
       }
     });
     return element;
@@ -154,12 +157,20 @@ class TodoList {
       borderRadius: "5px",
       overflowX: "scroll"
     });
-    if (data.selected) { element.style.background = "#305030" }
     data.element = {
       title: element.appendChild(this.#createTodoTitle(data.title)),
       renameInput: element.appendChild(this.#createTodoRename(data.title)),
       buttonArea: element.appendChild(this.#createTodoButtonArea())
     };
+    if (data.selected) { element.style.background = "#905090" }
+    if (data.rename) {
+      const title = data.element.title;
+      const input = data.element.renameInput;
+      input.style.display = "block";
+      input.focus();
+      input.select();
+      title.style.display = "none";
+    }
     return element;
   }
   #createOverlay(id) {
@@ -194,25 +205,30 @@ class TodoList {
     return [...element.parentNode.children].indexOf(element);
   }
   add(data) {
-    this.list.push(new Todo({
+    const todo = new Todo({
       title: data.title,
       value: data.value
-    }));
+    });
+    this.list.push(todo);
     this.save();
     this.display();
+    return todo;
   }
   newAdd(data) {
-    this.list.push(new Todo({
+    const todo = new Todo({
       title: data.title,
       value: data.value
     }, {
       rename: true
-    }));
+    });
+    this.list.push(todo);
     this.save();
     this.display();
+    return todo;
   }
   rename(index, title="") {
     this.list[index].title = title;
+    this.list[index].rename = false;
     this.save();
     this.display();
   }
