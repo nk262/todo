@@ -96,7 +96,11 @@ class Todo {
       whiteSpace: "nowrap"
     });
     element.appendChild(this.#createButton("Rename", e => {
-      this.rename(this.#getElementIndex(element.parentNode), this.prompt("title"));
+      const index = this.#getElementIndex(element.parentNode);
+      const title = this.list[index].element.title;
+      const input = this.list[index].element.renameInput;
+      input.style.display = "block";
+      title.style.display = "none";
     }, {
       margin: "2px",
       padding: "4px"
@@ -120,9 +124,11 @@ class Todo {
       overflowX: "scroll"
     });
     if (data.selected) { element.style.background = "#305030" }
-    element.appendChild(this.#createTodoTitle(data.title));
-    element.appendChild(this.#createTodoRename(data.title));
-    element.appendChild(this.#createTodoButtonArea());
+    data.element = {
+      title: element.appendChild(this.#createTodoTitle(data.title)),
+      renameInput: element.appendChild(this.#createTodoRename(data.title)),
+      buttonArea: element.appendChild(this.#createTodoButtonArea())
+    };
     return element;
   }
   #createOverlay(id) {
