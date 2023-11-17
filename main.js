@@ -192,11 +192,10 @@ class TodoList {
     return [...element.parentNode.children].indexOf(element);
   }
   add(data) {
-    this.list.push({
+    this.list.push(new Todo({
       title: data.title,
-      value: data.value,
-      selected: false
-    });
+      value: data.value
+    }));
     this.save();
     this.display();
   }
