@@ -73,6 +73,19 @@ class Todo {
     element.innerText = text;
     return element;
   }
+  #createTodoRename(title) {
+    const element = document.createElement("input");
+    Object.assign(element.style, {
+      background: "#205020",
+      overflowX: "scroll",
+      width: "100%",
+      padding: "5px",
+      whiteSpace: "nowrap",
+      display: "none"
+    });
+    element.value = title;
+    return element;
+  }
   #createTodoButtonArea() {
     const element = document.createElement("span");
     Object.assign(element.style, {
@@ -108,6 +121,7 @@ class Todo {
     });
     if (data.selected) { element.style.background = "#305030" }
     element.appendChild(this.#createTodoTitle(data.title));
+    element.appendChild(this.#createTodoRename(data.title));
     element.appendChild(this.#createTodoButtonArea());
     return element;
   }
