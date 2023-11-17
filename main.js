@@ -255,12 +255,22 @@ class TodoList {
     }
   }
   save(key="todo") {
-    localStorage.setItem(key, JSON.stringify(this.list));
+    const list = [];
+    for (let todo of this.list) {
+      list.push(todo.data);
+    }
+    localStorage.setItem(key, JSON.stringify(list));
   }
   load(key="todo") {
-    const list = localStorage.getItem(key);
+    let list = localStorage.getItem(key);
     if (list) {
-      this.list = JSON.parse(list);
+      list = JSON.parse(list);
+      for (let data of list) {
+        this.list.push(new Todo({
+          title: data.title,
+          value: data.value
+        }));
+      }
       this.display();
     }
   }
@@ -281,7 +291,7 @@ const TODO = new TodoList(a);
 TODO.load();
 
 TODO.clear();
-for (let i = 0; i < 10; i++) {
+for (let i = 0; i < 11; i++) {
   TODO.add({
     title: i,
     value: "ABC"
