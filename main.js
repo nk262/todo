@@ -77,13 +77,21 @@ class Todo {
     const element = document.createElement("input");
     Object.assign(element.style, {
       background: "#205020",
+      color: "#efefef",
       overflowX: "scroll",
       width: "100%",
       padding: "5px",
       whiteSpace: "nowrap",
+      border: "none",
+      borderRadius: "0px",
       display: "none"
     });
     element.value = title;
+    element.addEventListener("keydown", e => {
+      if (e.key == "Enter") {
+        this.rename(this.#getElementIndex(e.target.parentNode), e.target.value);
+      }
+    });
     return element;
   }
   #createTodoButtonArea() {
@@ -100,6 +108,8 @@ class Todo {
       const title = this.list[index].element.title;
       const input = this.list[index].element.renameInput;
       input.style.display = "block";
+      input.focus();
+      input.select();
       title.style.display = "none";
     }, {
       margin: "2px",
