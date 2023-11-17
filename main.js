@@ -317,11 +317,3 @@ document.body.appendChild(a);
 
 const TODO = new TodoList(a);
 TODO.load();
-
-TODO.clear();
-for (let i = 0; i < 11; i++) {
-  TODO.add({
-    title: i,
-    value: "ABC"
-  });
-}
