@@ -1,9 +1,11 @@
 "use strict";
 
 class Todo {
-  constructor(data) {
+  constructor(data, param={}) {
     this.data = data;
-    this.data.selected = false;
+    this.selected = false;
+    this.rename = false;
+    Object.assign(this, param);
   }
   get title() {
     return this.data.title;
@@ -195,6 +197,16 @@ class TodoList {
     this.list.push(new Todo({
       title: data.title,
       value: data.value
+    }));
+    this.save();
+    this.display();
+  }
+  newAdd(data) {
+    this.list.push(new Todo({
+      title: data.title,
+      value: data.value
+    }, {
+      rename: true
     }));
     this.save();
     this.display();
