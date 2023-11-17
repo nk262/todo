@@ -93,6 +93,10 @@ class TodoList {
       whiteSpace: "nowrap"
     });
     element.innerText = text;
+    element.addEventListener("click", e => {
+      // todo //
+      // this.showOverlay();
+    });
     return element;
   }
   #createTodoRename(title) {
