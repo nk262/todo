@@ -56,7 +56,7 @@ class TodoList {
     });
     element.appendChild(this.#createButton("Add", e => {
       const todo = this.newAdd({
-        title: this.prompt("title"),
+        title: "",
         value: "text!" + this.list.length
       });
       todo.element.renameInput.focus();
