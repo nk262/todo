@@ -1,5 +1,24 @@
 "use strict";
 
+class Todo {
+  constructor(data) {
+    this.data = data;
+    this.data.selected = false;
+  }
+  get title() {
+    return this.data.title;
+  }
+  set title(text) {
+    this.data.title = text;
+  }
+  get value() {
+    return this.data.value;
+  }
+  set value(text) {
+    this.data.value = text;
+  }
+}
+
 class TodoList {
   #createTodoMain(id) {
     const element = document.createElement("div");
