@@ -55,9 +55,11 @@ class TodoList {
       width: "100%"
     });
     element.appendChild(this.#createButton("Add", e => {
-      const todo = this.newAdd({
+      const todo = this.add({
         title: "",
         value: "text!" + this.list.length
+      }, {
+        rename: true
       });
       todo.element.renameInput.focus();
     }, {
@@ -117,8 +119,11 @@ class TodoList {
       if (e.key == "Enter") {
         const index = this.#getElementIndex(e.target.parentNode);
         this.rename(index, e.target.value);
-        this.display();
       }
+    });
+    element.addEventListener("blur", e => {
+      const index = this.#getElementIndex(e.target.parentNode);
+      this.rename(index, e.target.value);
     });
     return element;
   }
@@ -208,23 +213,11 @@ class TodoList {
   #getElementIndex(element) {
     return [...element.parentNode.children].indexOf(element);
   }
-  add(data) {
+  add(data, param={}) {
     const todo = new Todo({
       title: data.title,
       value: data.value
-    });
-    this.list.push(todo);
-    this.save();
-    this.display();
-    return todo;
-  }
-  newAdd(data) {
-    const todo = new Todo({
-      title: data.title,
-      value: data.value
-    }, {
-      rename: true
-    });
+    }, param);
     this.list.push(todo);
     this.save();
     this.display();
