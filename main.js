@@ -1,6 +1,6 @@
 "use strict";
 
-class Todo {
+class TodoList {
   #createTodoMain(id) {
     const element = document.createElement("div");
     element.id = id;
@@ -259,7 +259,7 @@ Object.assign(a.style, {
 });
 document.body.appendChild(a);
 
-const TODO = new Todo(a);
+const TODO = new TodoList(a);
 TODO.load();
 
 TODO.clear();
