@@ -3,8 +3,7 @@
 class Todo {
   constructor(data, param={}) {
     this.data = data;
-    this.selected = false;
-    this.rename = false;
+    this.edit = false;
     Object.assign(this, param);
   }
   get title() {
@@ -12,12 +11,6 @@ class Todo {
   }
   set title(text) {
     this.data.title = text;
-  }
-  get value() {
-    return this.data.value;
-  }
-  set value(text) {
-    this.data.value = text;
   }
 }
 
@@ -57,11 +50,10 @@ class TodoList {
     element.appendChild(this.#createButton("Add", e => {
       const todo = this.add({
         title: "",
-        value: "text!" + this.list.length
       }, {
-        rename: true
+        edit: true
       });
-      todo.element.renameInput.focus();
+      todo.element.editInput.focus();
     }, {
       margin: "5px",
       marginLeft: "10px",
@@ -95,13 +87,9 @@ class TodoList {
       whiteSpace: "nowrap"
     });
     element.innerText = text;
-    element.addEventListener("click", e => {
-      // todo //
-      // this.showOverlay();
-    });
     return element;
   }
-  #createTodoRename(title) {
+  #createTodoEdit(title) {
     const element = document.createElement("input");
     Object.assign(element.style, {
       background: "#205020",
@@ -118,12 +106,12 @@ class TodoList {
     element.addEventListener("keydown", e => {
       if (e.key == "Enter") {
         const index = this.#getElementIndex(e.target.parentNode);
-        this.rename(index, e.target.value);
+        this.edit(index, e.target.value);
       }
     });
     element.addEventListener("blur", e => {
       const index = this.#getElementIndex(e.target.parentNode);
-      this.rename(index, e.target.value);
+      this.edit(index, e.target.value);
     });
     return element;
   }
@@ -136,10 +124,10 @@ class TodoList {
       padding: "5px",
       whiteSpace: "nowrap"
     });
-    element.appendChild(this.#createButton("Rename", e => {
+    element.appendChild(this.#createButton("Edit", e => {
       const index = this.#getElementIndex(element.parentNode);
       const title = this.list[index].element.title;
-      const input = this.list[index].element.renameInput;
+      const input = this.list[index].element.editInput;
       input.style.display = "block";
       input.focus();
       input.select();
@@ -168,32 +156,17 @@ class TodoList {
     });
     data.element = {
       title: element.appendChild(this.#createTodoTitle(data.title)),
-      renameInput: element.appendChild(this.#createTodoRename(data.title)),
+      editInput: element.appendChild(this.#createTodoEdit(data.title)),
       buttonArea: element.appendChild(this.#createTodoButtonArea())
     };
-    if (data.selected) { element.style.background = "#905090" }
-    if (data.rename) {
+    if (data.edit) {
       const title = data.element.title;
-      const input = data.element.renameInput;
+      const input = data.element.editInput;
       input.style.display = "block";
       input.focus();
       input.select();
       title.style.display = "none";
     }
-    return element;
-  }
-  #createOverlay(id) {
-    const element = document.createElement("div");
-    element.id = id;
-    Object.assign(element.style, {
-      background: "#f4343490",
-      position: "absolute",
-      top: "0", left: "0",
-      width: "100%",
-      height: "100%",
-      zIndex: "2147483647",
-      display: "none"
-    });
     return element;
   }
   constructor(targetElement) {
@@ -206,8 +179,6 @@ class TodoList {
     this.element.topBar   = this.element.main.appendChild(this.#createTopBar("todo-top-bar"));
     this.element.todoList = this.element.main.appendChild(this.#createTodoList("todo-list"));
     
-    this.element.overlay  = this.element.root.appendChild(this.#createOverlay("todo-overlay"));
-    
     this.list = [];
   }
   #getElementIndex(element) {
@@ -215,17 +186,16 @@ class TodoList {
   }
   add(data, param={}) {
     const todo = new Todo({
-      title: data.title,
-      value: data.value
+      title: data.title
     }, param);
     this.list.push(todo);
     this.save();
     this.display();
     return todo;
   }
-  rename(index, title="") {
+  edit(index, title="") {
     this.list[index].title = title;
-    this.list[index].rename = false;
+    this.list[index].edit = false;
     this.save();
     this.display();
   }
@@ -244,30 +214,6 @@ class TodoList {
     this.list = [];
     this.save();
     this.display();
-  }
-  select(...indexes) {
-    for (let index of indexes) {
-      this.list[index].selected = true;
-    }
-    this.display();
-  }
-  deselect(...indexes) {
-    for (let index of indexes) {
-      this.list[index].selected = false;
-    }
-    this.display();
-  }
-  toggleSelect(...indexes) {
-    for (let index of indexes) {
-      this.list[index].selected = !this.list[index].selected;
-    }
-    this.display();
-  }
-  showOverlay() {
-    this.element.overlay.style.display = "block";
-  }
-  hideOverlay() {
-    this.element.overlay.style.display = "none";
   }
   display() {
     this.element.todoList.innerHTML = "";
@@ -288,15 +234,13 @@ class TodoList {
       list = JSON.parse(list);
       for (let data of list) {
         this.list.push(new Todo({
-          title: data.title,
-          value: data.value
+          title: data.title
         }));
       }
       this.display();
     }
   }
 }
-
 
 let todolist = document.createElement("div");
 Object.assign(todolist.style, {
