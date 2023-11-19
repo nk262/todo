@@ -263,10 +263,6 @@ class TodoList {
     }
     this.display();
   }
-  prompt(text="") {
-    // todo //
-    return prompt(text);
-  }
   showOverlay() {
     this.element.overlay.style.display = "block";
   }
