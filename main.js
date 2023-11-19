@@ -302,15 +302,15 @@ class TodoList {
 }
 
 
-let a = document.createElement("div");
-Object.assign(a.style, {
+let todolist = document.createElement("div");
+Object.assign(todolist.style, {
   background: "#444444",
   width: "90vw",
   height: "90vh",
   border: "solid 4px #366696",
   borderRadius: "10px"
 });
-document.body.appendChild(a);
+document.body.appendChild(todolist);
 
-const TODO = new TodoList(a);
+const TODO = new TodoList(todolist);
 TODO.load();
